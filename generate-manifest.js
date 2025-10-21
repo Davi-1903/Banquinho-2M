@@ -14,78 +14,46 @@ const ignoreList = [
   'index.html'           // Ignora o explorador
 ]
 
-function walk(dir, filelist = []) {
-  const files = fs.readdirSync(dir)
+function walk(dir) {
+  const items = [];
+  const files = fs.readdirSync(dir, { withFileTypes: true });
 
-  files.forEach(file => {
-    const filepath = path.join(dir, file)
-    
-    if (ignoreList.includes(file)) {
-      return // pula o item se estiver na lista de ignorados
-    }
+  for (const file of files) {
+    const name = file.name;
 
-    const stats = fs.statSync(filepath)
-    // normaliza para usar barras '/'
-    const relativePath = path.relative(rootDir, filepath).replace(/\\/g, '/') 
+    // Ignora arquivos/pastas indesejadas
+    if (ignoreList.has(name)) continue;
 
-    if (stats.isDirectory()) {
-      filelist.push({ path: relativePath, type: 'dir' })
-      walk(filepath, filelist)
+    const filePath = path.join(dir, name);
+    const relativePath = path.relative(rootDir, filePath).replace(/\\/g, "/");
+
+    if (file.isDirectory()) {
+      items.push({ path: relativePath, type: "dir" });
+      items.push(...walk(filePath));
     } else {
-      filelist.push({ path: relativePath, type: 'file' })
+      items.push({ path: relativePath, type: "file" });
     }
-  })
-  
+  }
+
+  return items;
+}
+
   // Para atualizar a lista manifest.json, caso o workflow do github não esteja
   // funcionando, basta digitar no terminal "node generate-manifest.js" e a lista
   // atualizará. Dê commit nas atualizações do manifesto.
 
-  return filelist
+function generateManifest() {
+  const fileManifest = walk(rootDir);
+
+  // Sobrescreve o manifest.json (ajuda na remoção de arquivos antigos)
+  // Não impacta na performance. Pesquisei e parece que só impactaria se o repo fosse absurdamente grande.
+  // Como não é o nosso caso, preferi deixar com que sobrescreva toda vez que for gerar o manifesto, que não leva nem 1s.
+  fs.writeFileSync(outputFile, JSON.stringify(fileManifest, null, 2), "utf-8");
+
+  console.log(
+    `✅ Manifesto gerado com sucesso em "${outputFile}" com ${fileManifest.length} itens.`
+  );
 }
 
-function filterExistingItems(previousManifest) {
-  return previousManifest.filter(item => {
-    try {
-      fs.accessSync(item.path)
-      return true
-    } catch (error) {
-      console.log(`Removendo item inexistente: ${item.path}`)
-      return false
-    }
-  })
-
-}
-
-let previousManifest = []
-try {
-  if (fs.existsSync(outputFile)) {
-    previousManifest = JSON.parse(fs.readFileSync(outputFile, 'utf-8'))
-    console.log('Manifest anterior carregado.')
-  }
-} catch (error) {
-  console.log('Não foi possível carregar o manifest anterior. Gerando novo.')
-}
-
-const newFileManifest = walk(rootDir)
-
-const existingPreviousItems = filterExistingItems(previousManifest)
-const combinedManifest = [...existingPreviousItems]
-const existingPaths = new Set(existingPreviousItems.map(item => item.path))
-
-newFileManifest.forEach(item => {
-  if (!existingPaths.has(item.path)) {
-    combinedManifest.push(item)
-    existingPaths.add(item.path)
-  }
-})
-
-combinedManifest.sort((a, b) => {
-  if (a.type === 'dir' && b.type === 'file') return -1
-  if (a.type === 'file' && b.type === 'dir') return 1
-  return a.path.localeCompare(b.path)
-})
-
-fs.writeFileSync(outputFile, JSON.stringify(combinedManifest, null, 2))
-
-console.log(`Manifesto gerado com sucesso em "${outputFile}" com ${combinedManifest.length} itens.`)
-console.log(`Itens removidos: ${previousManifest.length - existingPreviousItems.length}`)
+// Executa o script
+generateManifest();
