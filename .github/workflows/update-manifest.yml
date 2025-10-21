@@ -1,0 +1,33 @@
+name: Atualização automática do manifest.json
+
+on: 
+  push:
+    branches: [ main ]
+    
+    paths:
+      - '**'
+      - '!manifest.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+    
+    - name: Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+
+    - name: Gerar manifest
+      run: node generate-manifest.json
+
+    - name: Fazer commit e push do manifest.json atualizado
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add manifest.json
+        git commit -m "Atualiza manifest.json automático" || echo "Sem alterações para commitar"
+        git push

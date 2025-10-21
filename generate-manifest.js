@@ -35,9 +35,11 @@ function walk(dir, filelist = []) {
       filelist.push({ path: relativePath, type: 'file' })
     }
   })
-  console.log('yaml workflow github actions pesquisar sobre')
-  console.log('ver se tem como ou implementar esse arquivo direto no index.html ou incluir na função de init no main.js')
-  console.log('gerando no terminal: node generate-manifest.js')
+  
+  // Para atualizar a lista manifest.json, caso o workflow do github não esteja
+  // funcionando, basta digitar no terminal "node generate-manifest.js" e a lista
+  // atualizará. Dê commit nas atualizações do manifesto.
+
   return filelist
 }
 
