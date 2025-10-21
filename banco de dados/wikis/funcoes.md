@@ -21,7 +21,7 @@ Vamos entender, linha por linha, o que cada palavra faz na criação da função
 
 `DELIMITER`: O delimiter funciona como um sinalizador para que o MySQL termine um comando apenas quando ler o limitador imposto por ele. Por exemplo, no bloco de código acima o delimiter é `$$`. Logo, ele vai parar de executar o código quando encontrar `$$` novamente. Isso serve para funções que possuam mais de uma linha.
 > [!IMPORTANT]
-> Você pode definir qualquer caractere como um delimiter. Os mais comuns são `\\` e `$$`.   
+> Você pode definir qualquer caractere como um delimiter. Os mais comuns são `//` e `$$`.   
 
 `CREATE FUNCTION nomeDaFuncao(parametro1 TYPE, parametro2 TYPE)`: O crate function é o comando utilizado para criar a função. Após ele, o usuário escolhe o nome da função e dá os parâmetros que serão utilizados (assim como a tipagem dele). Por exemplo, se meus parâmetros forem dois números inteiros, então colocarei `(numero1 INT, numero2 INT)`.
 
