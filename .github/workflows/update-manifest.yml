@@ -2,7 +2,7 @@ name: Atualização automática do manifest.json
 
 on: 
   push:
-    branches: [ workflow_tests ]
+    branches: [ main ]
     
     paths:
       - '**'
