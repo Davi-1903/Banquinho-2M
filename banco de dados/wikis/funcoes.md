@@ -10,8 +10,9 @@ CREATE FUNCTION nomeDaFuncao(parametro1 TYPE, parametro2 TYPE)
 RETURNS TYPE
 [NOT] DETERMINISTIC
 BEGIN
-    [DECLARE variavel TYPE]
+    [DECLARE variavel TYPE];
     [BLOCO DE CÓDIGO];
+	[RETURN variavel];
 END;
 $$
 ```
@@ -20,7 +21,7 @@ Vamos entender, linha por linha, o que cada palavra faz na criação da função
 
 `DELIMITER`: O delimiter funciona como um sinalizador para que o MySQL termine um comando apenas quando ler o limitador imposto por ele. Por exemplo, no bloco de código acima o delimiter é `$$`. Logo, ele vai parar de executar o código quando encontrar `$$` novamente. Isso serve para funções que possuam mais de uma linha.
 > [!IMPORTANT]
-> Você pode definir qualquer caractere como um delimiter. Os mais comuns são `\\` e `$$`.   
+> Você pode definir qualquer caractere como um delimiter. Os mais comuns são `//` e `$$`.   
 
 `CREATE FUNCTION nomeDaFuncao(parametro1 TYPE, parametro2 TYPE)`: O crate function é o comando utilizado para criar a função. Após ele, o usuário escolhe o nome da função e dá os parâmetros que serão utilizados (assim como a tipagem dele). Por exemplo, se meus parâmetros forem dois números inteiros, então colocarei `(numero1 INT, numero2 INT)`.
 
@@ -35,6 +36,16 @@ Vamos entender, linha por linha, o que cada palavra faz na criação da função
 `DECLARE`: O usuário utiliza DECLARE para declarar variáveis que receberão valores no bloco de código da função. Essas variáveis precisam ter sua tipagem especificada.
 
 `END`: Sinalização de que o bloco de códigos que compõe a função terminou. Em seguida, há o delimiter para limitar a execução.
+
+## Como chamar uma função
+Para chamar uma função, basta apenas fazer um `SELECT` e passar os parâmetros caso haja.
+```sql
+SELECT nomeDaFuncao();
+SELECT nomeDaFuncao(Parametro1, Parametro2);
+SELECT nomeDaFuncao() as Resultado;
+```
+> [!NOTE]
+> Você pode definir um Alias para o resultado da função utilizando o `as`.
 
 ## Exemplos de funções
 ### Função de soma
