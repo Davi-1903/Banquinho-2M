@@ -10,8 +10,9 @@ CREATE FUNCTION nomeDaFuncao(parametro1 TYPE, parametro2 TYPE)
 RETURNS TYPE
 [NOT] DETERMINISTIC
 BEGIN
-    [DECLARE variavel TYPE]
+    [DECLARE variavel TYPE];
     [BLOCO DE CÓDIGO];
+	[RETURN variavel];
 END;
 $$
 ```
@@ -35,6 +36,16 @@ Vamos entender, linha por linha, o que cada palavra faz na criação da função
 `DECLARE`: O usuário utiliza DECLARE para declarar variáveis que receberão valores no bloco de código da função. Essas variáveis precisam ter sua tipagem especificada.
 
 `END`: Sinalização de que o bloco de códigos que compõe a função terminou. Em seguida, há o delimiter para limitar a execução.
+
+## Como chamar uma função
+Para chamar uma função, basta apenas fazer um `SELECT` e passar os parâmetros caso haja.
+```sql
+SELECT nomeDaFuncao();
+SELECT nomeDaFuncao(Parametro1, Parametro2);
+SELECT nomeDaFuncao() as Resultado;
+```
+> [!NOTE]
+> Você pode definir um Alias para o resultado da função utilizando o `as`.
 
 ## Exemplos de funções
 ### Função de soma
