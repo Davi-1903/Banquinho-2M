@@ -1,5 +1,13 @@
 [
   {
+    "path": ".gitignore",
+    "type": "file"
+  },
+  {
+    "path": "README.md",
+    "type": "file"
+  },
+  {
     "path": "banco de dados",
     "type": "dir"
   },
@@ -124,11 +132,11 @@
     "type": "dir"
   },
   {
-    "path": "psi/codigos/blueprint/src/database/model.py",
+    "path": "psi/codigos/blueprint/src/database/__init__.py",
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src/database/__init__.py",
+    "path": "psi/codigos/blueprint/src/database/model.py",
     "type": "file"
   },
   {
@@ -252,10 +260,6 @@
     "type": "file"
   },
   {
-    "path": "README.md",
-    "type": "file"
-  },
-  {
     "path": "static",
     "type": "dir"
   },
@@ -304,6 +308,10 @@
     "type": "file"
   },
   {
+    "path": "teste_worflow.md",
+    "type": "file"
+  },
+  {
     "path": "wikis",
     "type": "dir"
   },
@@ -321,6 +329,10 @@
   },
   {
     "path": "wikis/issue.md",
+    "type": "file"
+  },
+  {
+    "path": "wikis/testedework.md",
     "type": "file"
   }
 ]
