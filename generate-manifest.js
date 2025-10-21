@@ -22,7 +22,7 @@ function walk(dir) {
     const name = file.name;
 
     // Ignora arquivos/pastas indesejadas
-    if (ignoreList.has(name)) continue;
+    if (ignoreList.includes(name)) continue;
 
     const filePath = path.join(dir, name);
     const relativePath = path.relative(rootDir, filePath).replace(/\\/g, "/");
