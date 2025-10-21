@@ -1,4 +1,4 @@
-  const fs = require('fs')
+const fs = require('fs')
 const path = require('path')
 
 const rootDir = '.' // Começa do diretório atual
@@ -43,7 +43,49 @@ function walk(dir, filelist = []) {
   return filelist
 }
 
-const fileManifest = walk(rootDir)
-fs.writeFileSync(outputFile, JSON.stringify(fileManifest, null, 2))
+function filterExistingItems(previousManifest) {
+  return previousManifest.filter(item => {
+    try {
+      fs.accessSync(item.path)
+      return true
+    } catch (error) {
+      console.log(`Removendo item inexistente: ${item.path}`)
+      return false
+    }
+  })
 
-console.log(`Manifesto gerado com sucesso em "${outputFile}" com ${fileManifest.length} itens.`)
+}
+
+let previousManifest = []
+try {
+  if (fs.existsSync(outputFile)) {
+    previousManifest = JSON.parse(fs.readFileSync(outputFile, 'utf-8'))
+    console.log('Manifest anterior carregado.')
+  }
+} catch (error) {
+  console.log('Não foi possível carregar o manifest anterior. Gerando novo.')
+}
+
+const newFileManifest = walk(rootDir)
+
+const existingPreviousItems = filterExistingItems(previousManifest)
+const combinedManifest = [...existingPreviousItems]
+const existingPaths = new Set(existingPreviousItems.map(item => item.path))
+
+newFileManifest.forEach(item => {
+  if (!existingPaths.has(item.path)) {
+    combinedManifest.push(item)
+    existingPaths.add(item.path)
+  }
+})
+
+combinedManifest.sort((a, b) => {
+  if (a.type === 'dir' && b.type === 'file') return -1
+  if (a.type === 'file' && b.type === 'dir') return 1
+  return a.path.localeCompare(b.path)
+})
+
+fs.writeFileSync(outputFile, JSON.stringify(combinedManifest, null, 2))
+
+console.log(`Manifesto gerado com sucesso em "${outputFile}" com ${combinedManifest.length} itens.`)
+console.log(`Itens removidos: ${previousManifest.length - existingPreviousItems.length}`)
