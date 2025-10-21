@@ -8,6 +8,10 @@
     "type": "dir"
   },
   {
+    "path": "banco de dados/wikis/funcoes.md",
+    "type": "file"
+  },
+  {
     "path": "banco de dados/wikis/introducao.md",
     "type": "file"
   },
@@ -256,6 +260,14 @@
     "type": "dir"
   },
   {
+    "path": "static/icon",
+    "type": "dir"
+  },
+  {
+    "path": "static/icon/favicon-2M.ico",
+    "type": "file"
+  },
+  {
     "path": "static/script",
     "type": "dir"
   },
@@ -268,7 +280,27 @@
     "type": "dir"
   },
   {
+    "path": "static/style/blocosEspeciais.css",
+    "type": "file"
+  },
+  {
+    "path": "static/style/fileList.css",
+    "type": "file"
+  },
+  {
     "path": "static/style/main.css",
+    "type": "file"
+  },
+  {
+    "path": "static/style/sidebar.css",
+    "type": "file"
+  },
+  {
+    "path": "static/style/table.css",
+    "type": "file"
+  },
+  {
+    "path": "static/style/viewer.css",
     "type": "file"
   },
   {

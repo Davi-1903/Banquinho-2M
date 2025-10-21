@@ -1,4 +1,4 @@
-const fs = require('fs')
+  const fs = require('fs')
 const path = require('path')
 
 const rootDir = '.' // Começa do diretório atual
@@ -35,7 +35,9 @@ function walk(dir, filelist = []) {
       filelist.push({ path: relativePath, type: 'file' })
     }
   })
-
+  console.log('yaml workflow github actions pesquisar sobre')
+  console.log('ver se tem como ou implementar esse arquivo direto no index.html ou incluir na função de init no main.js')
+  console.log('gerando no terminal: node generate-manifest.js')
   return filelist
 }
 
