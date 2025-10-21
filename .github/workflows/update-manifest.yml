@@ -11,11 +11,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
 
     steps:
     - name: Clonar repositório
       uses: actions/checkout@v3
-    
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Instalar Node.js
       uses: actions/setup-node@v3
       with:
@@ -29,5 +33,5 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add manifest.json
-        git commit -m "Atualiza manifest.json automático" || echo "Sem alterações para commitar"
+        git diff --staged --quiet || git commit -m "Atualiza manifest.json automático"
         git push
