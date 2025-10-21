@@ -1,19 +1,111 @@
 [
   {
-    "path": ".gitignore",
-    "type": "file"
-  },
-  {
-    "path": "README.md",
-    "type": "file"
-  },
-  {
     "path": "banco de dados",
     "type": "dir"
   },
   {
     "path": "banco de dados/wikis",
     "type": "dir"
+  },
+  {
+    "path": "ics",
+    "type": "dir"
+  },
+  {
+    "path": "imagens",
+    "type": "dir"
+  },
+  {
+    "path": "psi",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/auth",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/database",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/main",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/templates",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/templates/auth",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/templates/components",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/blueprint/src/templates/main",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/flask-login",
+    "type": "dir"
+  },
+  {
+    "path": "psi/codigos/flask-login/templates",
+    "type": "dir"
+  },
+  {
+    "path": "psi/wikis",
+    "type": "dir"
+  },
+  {
+    "path": "psi/wikis/flask",
+    "type": "dir"
+  },
+  {
+    "path": "psi/wikis/sqlalchemy",
+    "type": "dir"
+  },
+  {
+    "path": "psi/wikis/sqlite",
+    "type": "dir"
+  },
+  {
+    "path": "static",
+    "type": "dir"
+  },
+  {
+    "path": "static/icon",
+    "type": "dir"
+  },
+  {
+    "path": "static/script",
+    "type": "dir"
+  },
+  {
+    "path": "static/style",
+    "type": "dir"
+  },
+  {
+    "path": "wikis",
+    "type": "dir"
+  },
+  {
+    "path": ".gitignore",
+    "type": "file"
   },
   {
     "path": "banco de dados/wikis/funcoes.md",
@@ -24,20 +116,12 @@
     "type": "file"
   },
   {
-    "path": "ics",
-    "type": "dir"
-  },
-  {
     "path": "ics/sitenoar.md",
     "type": "file"
   },
   {
     "path": "ics/sitenoar.pdf",
     "type": "file"
-  },
-  {
-    "path": "imagens",
-    "type": "dir"
   },
   {
     "path": "imagens/banquinho.png",
@@ -76,24 +160,12 @@
     "type": "file"
   },
   {
-    "path": "imagens/url.png",
-    "type": "file"
-  },
-  {
     "path": "imagens/url_for.png",
     "type": "file"
   },
   {
-    "path": "psi",
-    "type": "dir"
-  },
-  {
-    "path": "psi/codigos",
-    "type": "dir"
-  },
-  {
-    "path": "psi/codigos/blueprint",
-    "type": "dir"
+    "path": "imagens/url.png",
+    "type": "file"
   },
   {
     "path": "psi/codigos/blueprint/.gitignore",
@@ -108,16 +180,8 @@
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src",
-    "type": "dir"
-  },
-  {
     "path": "psi/codigos/blueprint/src/app.py",
     "type": "file"
-  },
-  {
-    "path": "psi/codigos/blueprint/src/auth",
-    "type": "dir"
   },
   {
     "path": "psi/codigos/blueprint/src/auth/routes.py",
@@ -128,10 +192,6 @@
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src/database",
-    "type": "dir"
-  },
-  {
     "path": "psi/codigos/blueprint/src/database/__init__.py",
     "type": "file"
   },
@@ -140,20 +200,8 @@
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src/main",
-    "type": "dir"
-  },
-  {
     "path": "psi/codigos/blueprint/src/main/routes.py",
     "type": "file"
-  },
-  {
-    "path": "psi/codigos/blueprint/src/templates",
-    "type": "dir"
-  },
-  {
-    "path": "psi/codigos/blueprint/src/templates/auth",
-    "type": "dir"
   },
   {
     "path": "psi/codigos/blueprint/src/templates/auth/login.html",
@@ -168,10 +216,6 @@
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src/templates/components",
-    "type": "dir"
-  },
-  {
     "path": "psi/codigos/blueprint/src/templates/components/header.html",
     "type": "file"
   },
@@ -180,20 +224,8 @@
     "type": "file"
   },
   {
-    "path": "psi/codigos/blueprint/src/templates/main",
-    "type": "dir"
-  },
-  {
-    "path": "psi/codigos/flask-login",
-    "type": "dir"
-  },
-  {
     "path": "psi/codigos/flask-login/app.py",
     "type": "file"
-  },
-  {
-    "path": "psi/codigos/flask-login/templates",
-    "type": "dir"
   },
   {
     "path": "psi/codigos/flask-login/templates/base.html",
@@ -216,14 +248,6 @@
     "type": "file"
   },
   {
-    "path": "psi/wikis",
-    "type": "dir"
-  },
-  {
-    "path": "psi/wikis/flask",
-    "type": "dir"
-  },
-  {
     "path": "psi/wikis/flask/Blueprint.md",
     "type": "file"
   },
@@ -240,10 +264,6 @@
     "type": "file"
   },
   {
-    "path": "psi/wikis/sqlalchemy",
-    "type": "dir"
-  },
-  {
     "path": "psi/wikis/sqlalchemy/Flask-SQLAlchemy.md",
     "type": "file"
   },
@@ -252,36 +272,20 @@
     "type": "file"
   },
   {
-    "path": "psi/wikis/sqlite",
-    "type": "dir"
-  },
-  {
     "path": "psi/wikis/sqlite/sqlite3.md",
     "type": "file"
   },
   {
-    "path": "static",
-    "type": "dir"
-  },
-  {
-    "path": "static/icon",
-    "type": "dir"
+    "path": "README.md",
+    "type": "file"
   },
   {
     "path": "static/icon/favicon-2M.ico",
     "type": "file"
   },
   {
-    "path": "static/script",
-    "type": "dir"
-  },
-  {
     "path": "static/script/main.js",
     "type": "file"
-  },
-  {
-    "path": "static/style",
-    "type": "dir"
   },
   {
     "path": "static/style/blocosEspeciais.css",
@@ -308,14 +312,6 @@
     "type": "file"
   },
   {
-    "path": "teste_worflow.md",
-    "type": "file"
-  },
-  {
-    "path": "wikis",
-    "type": "dir"
-  },
-  {
     "path": "wikis/ambientesvirtuais.md",
     "type": "file"
   },
@@ -329,10 +325,6 @@
   },
   {
     "path": "wikis/issue.md",
-    "type": "file"
-  },
-  {
-    "path": "wikis/testedework.md",
     "type": "file"
   }
 ]
