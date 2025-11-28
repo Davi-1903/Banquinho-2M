@@ -24,6 +24,14 @@
     "type": "file"
   },
   {
+    "path": "banco de dados/wikis/procedimentos.md",
+    "type": "file"
+  },
+  {
+    "path": "banco de dados/wikis/subconsulta.md",
+    "type": "file"
+  },
+  {
     "path": "ics",
     "type": "dir"
   },
