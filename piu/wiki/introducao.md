@@ -2,7 +2,7 @@
 
 ## Variáveis
 
-Se você já conhece variáveis em outras linguagens, a ideia é a mesma. Em JS moderno, usamos `let` e `const`:
+Se você já conhece variáveis em outras linguagens, a ideia é a mesma. No JavaScript moderno, usamos `let` e `const`:
 
 ```javascript
 let nome = "Maria"; // pode ser reatribuída
@@ -13,7 +13,7 @@ PI = 3; // ❌ erro!
 ```
 
 > [!TIP]
-> Evite `var` — ela existe por razões históricas, mas tem comportamentos confusos de escopo. Prefira sempre `let` e `const`.
+> Evite `var` — ela existe por razões históricas, mas possui comportamentos de escopo que podem causar confusão. Prefira sempre `let` e `const`.
 
 ### Tipos de dados
 
@@ -23,39 +23,45 @@ JavaScript possui **tipagem dinâmica**: o tipo é inferido automaticamente.
 let numero = 42; // number
 let texto = "Olá, mundo!"; // string
 let ativo = true; // boolean
-let vazio = null; // null (ausência intencional)
+let vazio = null; // null (ausência intencional de valor)
 let indefinido; // undefined (não inicializado)
 let lista = [1, 2, 3]; // array
 let pessoa = { nome: "Ana" }; // object
+```
+
+Para descobrir o tipo de uma variável, use `typeof`:
+
+```javascript
+typeof numero; // "number"
 ```
 
 ---
 
 ## Operadores
 
-Os operadores aritméticos são os mesmos de sempre (`+`, `-`, `*`, `/`, `%`). Mas preste atenção nos de comparação:
+Os operadores aritméticos são os mesmos de sempre (`+`, `-`, `*`, `/`, `%`). Porém, preste atenção aos operadores de comparação:
 
 ```javascript
-5 == "5"; // true  — compara só o valor (evite!)
-5 === "5"; // false — compara valor E tipo (prefira sempre este)
+5 == "5"; // true  — compara apenas o valor (evite!)
+5 === "5"; // false — compara valor e tipo (prefira este)
 5 !== "5"; // true
 ```
 
 > [!IMPORTANT]
-> **Regra de ouro:** use sempre `===` e `!==` para evitar surpresas com conversões automáticas de tipo.
+> **Regra de ouro:** use sempre `===` e `!==` para evitar comportamentos inesperados causados por conversões automáticas de tipo.
 
 ---
 
 ## Condicionais
 
-Idêntico ao que você já conhece:
+A sintaxe é semelhante à de outras linguagens:
 
 ```javascript
 let hora = 14;
 
 if (hora < 12) {
     console.log("Bom dia!");
-} else if (hora < 18) {
+} else if (hora < 18) { // equivalente ao elif do Python
     console.log("Boa tarde!");
 } else {
     console.log("Boa noite!");
@@ -64,12 +70,19 @@ if (hora < 12) {
 
 ### Operador ternário
 
-Uma forma compacta para condições simples:
+Uma forma compacta de escrever condições simples:
 
 ```javascript
 let idade = 20;
 let status = idade >= 18 ? "adulto" : "menor de idade";
+
 console.log(status); // "adulto"
+```
+
+A estrutura do operador ternário é:
+
+```javascript
+condicao ? valorSeVerdadeiro : valorSeFalso
 ```
 
 ---
@@ -84,31 +97,56 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-### `while`
-
-```javascript
-let contador = 0;
-while (contador < 3) {
-    console.log("contando:", contador);
-    contador++;
-}
-```
-
 ### `for...of` (para arrays)
 
 ```javascript
 let frutas = ["maçã", "banana", "laranja"];
 
 for (let fruta of frutas) {
-    console.log(fruta);
+    console.log(fruta); // "maçã", "banana", "laranja"
 }
+```
+
+### `for...in` (para propriedades/índices)
+
+```javascript
+let frutas = ["maçã", "banana", "laranja"];
+
+for (let indice in frutas) {
+    console.log(indice); // 0, 1, 2
+}
+```
+
+> [!WARNING]
+> `for...in` percorre os índices/propriedades do objeto, não os valores. Para iterar diretamente sobre os valores de um array, prefira `for...of`.
+
+### `while`
+
+```javascript
+let contador = 0;
+
+while (contador < 3) {
+    console.log("contando:", contador); // 0, 1, 2
+    contador++;
+}
+```
+
+### `do...while`
+
+```javascript
+let contador = 0;
+
+do {
+    console.log("contando:", contador); // 0, 1, 2
+    contador++;
+} while (contador < 3);
 ```
 
 ---
 
 ## Funções
 
-Funções em JS são **cidadãs de primeira classe** — podem ser armazenadas em variáveis, passadas como argumento e retornadas de outras funções.
+Funções em JavaScript são **cidadãs de primeira classe**: podem ser armazenadas em variáveis, passadas como argumento e retornadas por outras funções.
 
 ### Declaração clássica
 
@@ -128,13 +166,25 @@ const somar = (a, b) => a + b;
 console.log(somar(3, 4)); // 7
 ```
 
-Arrow functions são amplamente usadas no JS moderno por sua sintaxe concisa.
+Arrow functions são amplamente utilizadas no JavaScript moderno por sua sintaxe concisa.
+
+Um detalhe importante é o uso das chaves (`{}`):
+
+```javascript
+const somar1 = (a, b) => a + b;
+
+const somar2 = (a, b) => {
+    return a + b;
+};
+```
+
+Na função `somar2`, o uso das chaves exige o uso explícito de `return`.
 
 ---
 
 ## Arrays e métodos essenciais
 
-Arrays em JS têm métodos poderosos para transformar e filtrar dados:
+Arrays em JavaScript possuem métodos muito poderosos para transformar e manipular dados:
 
 ```javascript
 let numeros = [1, 2, 3, 4, 5];
@@ -143,20 +193,25 @@ let numeros = [1, 2, 3, 4, 5];
 let dobrados = numeros.map((n) => n * 2);
 // [2, 4, 6, 8, 10]
 
-// filter — filtra por condição
+// filter — filtra elementos por condição
 let pares = numeros.filter((n) => n % 2 === 0);
 // [2, 4]
 
-// reduce — acumula em um único valor
+// reduce — acumula valores em um único resultado
 let soma = numeros.reduce((acc, n) => acc + n, 0);
 // 15
+
+// forEach — executa uma função para cada elemento
+numeros.forEach((num) => {
+    console.log(num); // 1, 2, 3, 4, 5
+});
 ```
 
 ---
 
 ## Objetos
 
-Objetos são coleções de pares **chave: valor** e são a base de praticamente tudo em JavaScript.
+Objetos são coleções de pares **chave: valor** e formam a base de praticamente tudo em JavaScript.
 
 ```javascript
 const pessoa = {
@@ -171,36 +226,57 @@ console.log(pessoa.nome); // "Carlos"
 console.log(pessoa.saudar()); // "Olá, meu nome é Carlos"
 ```
 
-> A sintaxe `` `texto ${variavel}` `` é chamada de **template literal** e permite interpolar variáveis diretamente em strings.
+> A sintaxe `texto ${variavel}` é chamada de **template literal** e permite interpolar variáveis diretamente em strings.
+
+
+```javascript
+const pessoa = {
+    nome: "Carlos",
+    idade: 28,
+    saudar: () => {
+        return `Olá, meu nome é ${this.nome}`;
+    },
+};
+
+console.log(pessoa.nome); // "Carlos"
+console.log(pessoa.saudar()); // Olá, meu nome é undefined
+```
+
+Ao trocar o método `saudar` por uma [**arrow function**](#arrow-function-sintaxe-moderna) o `this` não se refere ao objeto **pessoa**, mas sim um objeto pai...Por via das dúvidas use a declaração anterior.
+
+---
 
 ## Promises e async/await
 
-JavaScript é **single-threaded** — executa uma coisa por vez. Mas muitas operações do mundo real levam tempo: buscar dados de uma API, ler um arquivo, aguardar um timer. Para não travar a execução enquanto espera, JS usa um modelo **assíncrono**.
+JavaScript é **single-threaded** — executa uma tarefa por vez. Porém, muitas operações do mundo real levam tempo: buscar dados de uma API, ler arquivos ou aguardar temporizadores. Para evitar bloquear a execução enquanto espera essas operações terminarem, JavaScript utiliza um modelo **assíncrono**.
 
 ### O problema do código síncrono
 
 Imagine buscar dados de um servidor de forma síncrona (bloqueante):
 
 ```javascript
-// ⚠️ Hipotético — JS não funciona assim
-const dados = buscarDaAPI(); // trava tudo até terminar
+// ⚠️ Hipotético — JavaScript não funciona assim
+const dados = buscarDaAPI();
+
 console.log(dados);
-console.log("Isso só roda depois que a busca terminar");
+console.log("Isso só executa depois da resposta");
 ```
 
-Isso travaria o navegador inteiro enquanto aguarda a resposta. A solução são as **Promises**.
+Isso travaria o navegador inteiro enquanto a resposta não chegasse. A solução são as **Promises**.
 
 ---
 
 ### Promise
 
-Uma `Promise` representa um valor que **ainda não está disponível**, mas estará no futuro — ou falhará. Ela tem três estados:
+Uma `Promise` representa um valor que **ainda não está disponível**, mas poderá estar no futuro — ou falhar com um erro.
+
+Ela possui três estados:
 
 | Estado      | Descrição             |
 | ----------- | --------------------- |
 | `pending`   | Aguardando resolução  |
 | `fulfilled` | Concluída com sucesso |
-| `rejected`  | Falhou com um erro    |
+| `rejected`  | Falhou com erro       |
 
 ```javascript
 const promessa = new Promise((resolve, reject) => {
@@ -214,31 +290,35 @@ const promessa = new Promise((resolve, reject) => {
 });
 
 promessa
-    .then((resultado) => console.log(resultado)) // "Operação concluída!"
+    .then((resultado) => console.log(resultado))
     .catch((erro) => console.error(erro));
 ```
 
-O método `.then()` recebe o valor resolvido; `.catch()` captura erros. Encadear vários `.then()` era o padrão antigo — funciona, mas pode se tornar verboso. Para isso surgiu o `async/await`.
+* `.then()` recebe o valor resolvido
+* `.catch()` captura erros
+
+Antes do `async/await`, era comum encadear vários `.then()`, o que podia deixar o código mais difícil de ler.
 
 ---
 
-### async / await
+### `async` / `await`
 
-`async/await` é uma sintaxe moderna que torna código assíncrono tão legível quanto código síncrono. Por baixo dos panos, ainda são Promises.
+`async/await` é uma sintaxe moderna que torna código assíncrono mais legível.
 
 ```javascript
-// Uma função marcada com async sempre retorna uma Promise
+// Uma função async sempre retorna uma Promise
 async function buscarUsuario(id) {
     const resposta = await fetch(`https://api.exemplo.com/usuarios/${id}`);
     const dados = await resposta.json();
+
     return dados;
 }
 ```
 
-- **`async`** — marca a função como assíncrona
-- **`await`** — pausa a execução _dentro da função_ até a Promise resolver, sem bloquear o restante do programa
+* `async` marca a função como assíncrona
+* `await` pausa a execução da função até a Promise ser resolvida, sem bloquear o restante do programa
 
-### Tratando erros com try/catch
+### Tratamento de erros com `try/catch`
 
 ```javascript
 async function buscarUsuario(id) {
@@ -250,6 +330,7 @@ async function buscarUsuario(id) {
         }
 
         const dados = await resposta.json();
+
         console.log(dados);
     } catch (erro) {
         console.error("Falha ao buscar usuário:", erro.message);
@@ -259,19 +340,20 @@ async function buscarUsuario(id) {
 buscarUsuario(1);
 ```
 
-> `await` só pode ser usado **dentro** de funções marcadas com `async`. Tentar usá-lo fora disso gera um erro de sintaxe.
+> `await` só pode ser utilizado dentro de funções marcadas com `async` (ou em módulos com suporte a top-level await).
 
 ### Exemplo prático com a Fetch API
-
-Um caso muito comum é consumir uma API pública:
 
 ```javascript
 async function buscarPiada() {
     try {
-        const resposta = await fetch("https://official-joke-api.appspot.com/random_joke");
+        const resposta = await fetch(
+            "https://official-joke-api.appspot.com/random_joke"
+        );
+
         const piada = await resposta.json();
 
-        console.log(`${piada.setup}`);
+        console.log(piada.setup);
         console.log(`👉 ${piada.punchline}`);
     } catch (erro) {
         console.error("Não foi possível buscar a piada:", erro.message);
@@ -283,11 +365,10 @@ buscarPiada();
 
 ### Executando Promises em paralelo
 
-Quando você precisa aguardar múltiplas operações **independentes**, use `Promise.all` para executá-las ao mesmo tempo em vez de uma por vez:
+Quando várias operações são independentes, use `Promise.all` para executá-las simultaneamente:
 
 ```javascript
 async function buscarDados() {
-    // ✅ Executam em paralelo — mais rápido
     const [usuarios, produtos] = await Promise.all([
         fetch("/api/usuarios").then((r) => r.json()),
         fetch("/api/produtos").then((r) => r.json()),
@@ -298,12 +379,12 @@ async function buscarDados() {
 ```
 
 > [!TIP]
-> Se qualquer uma das Promises rejeitar, `Promise.all` rejeita imediatamente. Para casos onde você quer os resultados mesmo com falhas parciais, use `Promise.allSettled`.
+> Se qualquer Promise falhar, `Promise.all` rejeita imediatamente. Se você quiser obter todos os resultados mesmo com falhas parciais, use `Promise.allSettled()`.
 
 ---
 
 ## Recursos recomendados
 
-- [MDN Web Docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — a documentação mais completa e confiável
-- [javascript.info](https://javascript.info) — tutorial moderno e detalhado (disponível em PT-BR)
-- Console do navegador (F12) — seu melhor amigo para experimentar
+* [MDN Web Docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) — documentação oficial e extremamente completa
+* [javascript.info](https://javascript.info) — tutorial moderno e detalhado
+* Console do navegador (`F12`) — excelente para experimentar código rapidamente
